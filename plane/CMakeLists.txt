@@ -115,22 +115,13 @@ include_directories(
 
 set(GAME_SRC
   Classes/AppDelegate.cpp
-  Classes/GameScene.cpp
-  Classes/MenuScene.cpp
-  Classes/AudioControlScene.cpp
-  Classes/FKSprite.cpp
-  Classes/PreLoadScene.cpp
-
+  Classes/HelloWorldScene.cpp
   ${PLATFORM_SPECIFIC_SRC}
 )
 
 set(GAME_HEADERS
   Classes/AppDelegate.h
-  Classes/GameScene.h
-  Classes/MenuScene.h
-  Classes/AudioControlScene.h
-  Classes/FKSprite.h
-  Classes/PreLoadScene.h
+  Classes/HelloWorldScene.h
   ${PLATFORM_SPECIFIC_HEADERS}
 )
 
