@@ -1,7 +1,6 @@
 #ifndef __starwar__logo__
 #define __starwar__logo__
 
-//#include <iostream>
 #include "cocos2d.h"
 using namespace cocos2d;
 class logo:public Layer
