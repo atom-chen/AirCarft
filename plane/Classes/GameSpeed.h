@@ -66,7 +66,7 @@ public:
 	void updateBigBoomItem(int bigBoomCount);
 	void menuBigBoomCallback(Ref* pSender);
 	void GameOver();
-    void GameTime();
+    void GameTime(float dt);
 public:
 	bool buttetFlag;
 public:

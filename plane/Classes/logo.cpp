@@ -7,12 +7,10 @@ using namespace CocosDenshion;
 
 bool logo::init()
 {
-	bool flag=false;
 	if(!Layer::init())
 	{
 		return false;
 	}
-	flag=true;
 	Size winSize=Director::getInstance()->getWinSize();
 	Sprite *sprite=Sprite::create("firstload.jpg");
 	sprite->setPosition(Point(winSize.width/2, winSize.height/2));
@@ -41,13 +39,12 @@ bool logo::init()
 
 
 	CallFunc *callLoad=CallFunc::create(this, SEL_CallFunc(&logo::loading));
-
 	FadeOut *out=FadeOut::create(4.0f);
 	CallFunc *call=CallFunc::create(this, SEL_CallFunc(&logo::replace));
 	FiniteTimeAction *finite=Sequence::create(callLoad,out,call,NULL);
 	sprite->runAction(finite);
 
-	return flag;
+	return true;
 }
 Scene* logo::scene()
 {
