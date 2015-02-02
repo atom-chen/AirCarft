@@ -1,11 +1,3 @@
-//
-//  beginLayer.h
-//
-//
-//  Created by gh on 2014Äê10ÔÂ27ÈÕ
-//
-//
-
 #ifndef Bing_beginLayer_h
 #define Bing_beginLayer_h
 
@@ -22,8 +14,8 @@ public:
     static cocos2d::Animation* createAnimation(const char* formatStr, int frameCount, int fps);
     virtual bool init();
     CREATE_FUNC(beginLayer);
-    void loading();
-    void enterGame();
+    void loading(float dt);
+    void enterGame(float dt);
 
 };
 
