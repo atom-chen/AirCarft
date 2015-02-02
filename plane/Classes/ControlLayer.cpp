@@ -9,7 +9,7 @@ bool ControlLayer::init()
 	Size winSize = Director::getInstance()->getWinSize();
     
 	Sprite *normalPause=Sprite::create("normalpause.png");
-//    Sprite *pressPause=Sprite::create("presspause.png");
+//  Sprite *pressPause=Sprite::create("presspause.png");
 
 	
 	Sprite *scorebg = Sprite::create("scorebg.png");
@@ -18,8 +18,6 @@ bool ControlLayer::init()
 	this->addChild(scorebg);
 	
     //ÔÝÍ£¿ª¹Ø
-   // m_btnPauseOpen = MenuItemSprite::create(normalPause, pressPause);
-  //  m_btnPauseClose = MenuItemSprite::create(pressPause, normalPause);
     m_btnPauseOpen = MenuItemImage::create("normalpause.png", "presspause.png");
     m_btnPauseClose = MenuItemImage::create("presspause.png", "normalpause.png");
     
@@ -56,8 +54,8 @@ void ControlLayer::menuPauseCallback(Ref* pSender)
 	}
 	else
 	{
-		Director::getInstance()->resume();//
-		SimpleAudioEngine::getInstance()->rewindBackgroundMusic();//
+		Director::getInstance()->resume();
+		SimpleAudioEngine::getInstance()->rewindBackgroundMusic();
 		SimpleAudioEngine::getInstance()->resumeAllEffects();
 	}
 }
@@ -70,10 +68,7 @@ void ControlLayer::updateScore(int score)
 	}
 	if (score >0 && score <9999999)
 	{
-		
-		
-		Size winSize = Director::getInstance()->getWinSize();
-        
+		Size winSize = Director::getInstance()->getWinSize();   
         char buf[100];
         sprintf(buf, "%d",score);
         Sprite* spTmp = Sprite::create("number.png");
@@ -97,7 +92,5 @@ void ControlLayer::updateScore(int score)
 		ScaleTo *scaleLittle = ScaleTo::create(0.2f,1.4f);
 		FiniteTimeAction *sequence = Sequence::create(scaleBig,scaleLittle,NULL);
 		lableScore->runAction(sequence);
-
-
 	}
 }
