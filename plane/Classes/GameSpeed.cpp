@@ -8,7 +8,6 @@ bool GameSpeed::init()
 	{
 		return false;
 	}
-	//SpriteFrameCache::getInstance()->addSpriteFramesWithFile("shoot.plist");
 	buttetFlag = true;
 	bigBoomCount = 0;
     playerScore  = 0;
@@ -42,7 +41,6 @@ bool GameSpeed::init()
 
 	this->GameStart();
 	this->scheduleUpdate();
-
 
     //ÉèÖÃ´¥ÃşÊÂ¼ş¼àÌı
     auto touchListener = EventListenerTouchOneByOne::create();

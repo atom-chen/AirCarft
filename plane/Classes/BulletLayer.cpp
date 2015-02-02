@@ -27,8 +27,6 @@ bool BulletLayer::init()
 }
 void BulletLayer::AddBullet(float dt)
 {
-	
-
 	Sprite *bullet = Sprite::createWithSpriteFrameName("zidan1.png");
 	bulletBatchNode->addChild(bullet);
 
