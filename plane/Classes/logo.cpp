@@ -33,11 +33,6 @@ bool logo::init()
 		GameData::Inst()->isEffectOpen=isEffectOpen;
 	}
 
-	//    if (GameData::Inst()->isEffectOpen) {
-	//        SimpleAudioEngine::getInstance()->playEffect("shaoye.mp3",false);
-	//    }
-
-
 	CallFunc *callLoad=CallFunc::create(this, SEL_CallFunc(&logo::loading));
 	FadeOut *out=FadeOut::create(4.0f);
 	CallFunc *call=CallFunc::create(this, SEL_CallFunc(&logo::replace));
@@ -55,7 +50,7 @@ Scene* logo::scene()
 }
 void logo::loading()
 {
-
+    
 }
 void logo::replace()
 {
