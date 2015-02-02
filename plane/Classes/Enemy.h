@@ -49,13 +49,13 @@ public:
 	
 
 	void addEnemy2(float dt);
-	void enemy2Blowup(Enemy* enemy1);//2ºÅµÐ»ú±¬Õ¨
+	void enemy2Blowup(Enemy* enemy2);//2ºÅµÐ»ú±¬Õ¨
 	void removeEnemy2(Node* pTarget,void* data);//ÒÆ³ý2ºÅµÐ»ú
 	void removeAllEnemy2();//ÒÆ³ýËùÓÐ2ºÅµÐ»ú
 	void enemy2MoveFinished(Node *pEnemy2);
 
 	void addEnemy3(float dt);//Ìí¼Ó3ºÅµÐ»ú
-	void enemy3Blowup(Enemy* enemy1);//3ºÅµÐ»ú±¬Õ¨
+	void enemy3Blowup(Enemy* enemy3);//3ºÅµÐ»ú±¬Õ¨
 	void removeEnemy3(Node* pTarget,void* data);//ÒÆ³ý3ºÅµÐ»ú
 	void removeAllEnemy3();//ÒÆ³ýËùÓÐ3ºÅµÐ»ú
 	void enemy3MoveFinished(Node *pEnemy3);
