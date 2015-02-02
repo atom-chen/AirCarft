@@ -1,11 +1,3 @@
-//
-//  GameData.h
-//  Bing
-//
-//  Created by gh on 14-8-4.
-//
-//
-
 #ifndef GameData_h
 #define GameData_h
 #include "SimpleAudioEngine.h"

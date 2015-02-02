@@ -1,15 +1,15 @@
-#ifndef __WELCOMELAYER_H__
-#define __WELCOMELAYER_H__	
-
-#include"cocos2d.h"
-#include "GameoverLayer.h"
+#ifndef _WELCOMELAYER_H_
+#define _WELCOMELAYER_H_	
 #include "MainScene.h"
 #include "GameSpeed.h"
+#include "GameoverLayer.h"
 #include "DBUtil.h"
 #include "setLayer.h"
 #include "SimpleAudioEngine.h"
+#include"cocos2d.h"
 
 using namespace cocos2d;
+
 class WelcomeLayer:public Layer
 {
 private:

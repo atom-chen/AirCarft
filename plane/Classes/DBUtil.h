@@ -28,7 +28,7 @@ public:
     
     static void closeDB();
 
-	int atoi(char   *s);
+	int atoi(char *s);
 };
 class UserVO
 {
