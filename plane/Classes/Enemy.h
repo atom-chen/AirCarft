@@ -10,7 +10,7 @@ class Enemy:public Node
 {
 private:
 	Sprite *m_sprite;
-	int		  m_life;
+	int m_life;
 
 public:
 	Enemy();

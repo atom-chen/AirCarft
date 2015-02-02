@@ -87,8 +87,6 @@ void EnemyLayer::addEnemy1(float dt)
 {
 	//°ó¶¨µÐ»ú1
 	Enemy *enemy1 = Enemy::create();
-//	enemy1->bindSprite(Sprite::createWithSpriteFrameName("diji.png"),100);
-	//enemy1->bindSprite(Sprite::createWithSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("diji1_1.png")),2);
 	enemy1->bindSprite(Sprite::create("diji1_1.png"),3);
 
 	//Ìí¼Ó·É»ú¶¯»­
@@ -127,14 +125,13 @@ void EnemyLayer::addEnemy2(float dt)
 {
 	//°ó¶¨µÐ»ú1
 	Enemy *enemy2 = Enemy::create();
-	//	enemy1->bindSprite(Sprite::createWithSpriteFrameName("diji.png"),100);
-	enemy2->bindSprite(Sprite::create("diji2_1.png"),10);
+	enemy2->bindSprite(Sprite::create("diji1_1.png"),10);
 	//Ìí¼Ó·É»ú¶¯»­
 	Animation *animation = Animation::create();
 	animation->setDelayPerUnit(0.1f);
 	animation->setLoops(-1);
-	animation->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("diji2_1.png"));
-	animation->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("diji2_2.png"));//Ö¡¶¯»­
+	animation->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("diji1_1.png"));
+	animation->addSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("diji1_2.png"));//Ö¡¶¯»­
 	Animate *animate = Animate::create(animation);
 	enemy2->getSprite()->runAction(animate);
 
@@ -212,23 +209,18 @@ void EnemyLayer::enemy2MoveFinished(Node *pEnemy2)
 {
 	Enemy *enmey2 =(Enemy*)pEnemy2;
 	this->m_pAllEnemy2->removeObject(enmey2);//ÒÆ³ýarray
-	//this->enemyBatchNode->removeChild(enmey1,true);//ÆÁÄ»ÒÆ³ý
 	this->removeChild(enmey2,true);
 }
 void EnemyLayer::enemy3MoveFinished(Node *pEnemy3)
 {
 	Enemy *enmey3 =(Enemy*)pEnemy3;
 	this->m_pAllEnemy3->removeObject(enmey3);
-
 	this->removeChild(enmey3,true);
 }
 void EnemyLayer::enemy1Blowup(Enemy* enemy1)
 {
-	//SimpleAudioEngine::getInstance()->playEffect("sound/enemy1_down.mp3",false);
 	enemy1->getSprite()->stopAllActions();
-
-	point = enemy1->getPosition();
-
+	this->point = enemy1->getPosition();
 	createEnemy1BlowupAnimation();
 	Animation* animation = AnimationCache::getInstance()->getAnimation("Enemy1Blowup");
 	Animate* animate =Animate::create(animation);
@@ -237,21 +229,18 @@ void EnemyLayer::enemy1Blowup(Enemy* enemy1)
 	enemy1->getSprite()->runAction(sequence);
     if (GameData::Inst()->gameMode == GameMode::NORMAL) {
         starsJump(2);
-    }
-	
-
-	
+    }		
 }
 //µÐ»ú2±¬Õ¨
 void EnemyLayer::enemy2Blowup(Enemy* enemy2)
 {
 	enemy2->getSprite()->stopAllActions();
 	//¶¯»­¼ÓÈë»º³å³Ø
-	createEnemy2BlowupAnimation();
 	this->point = enemy2->getPosition();
+	createEnemy2BlowupAnimation();
 	Animation* animation = AnimationCache::getInstance()->getAnimation("Enemy2Blowup");
 	Animate* animate =Animate::create(animation);
-	__CCCallFuncND* removeEnemy2=__CCCallFuncND::create(this,callfuncND_selector(EnemyLayer::removeEnemy1),(void*)enemy2);
+	__CCCallFuncND* removeEnemy2=__CCCallFuncND::create(this,callfuncND_selector(EnemyLayer::removeEnemy2),(void*)enemy2);
 	Sequence* sequence = Sequence::create(animate,removeEnemy2,NULL);
 	enemy2->getSprite()->runAction(sequence);
     if (GameData::Inst()->gameMode == GameMode::NORMAL) {
@@ -330,11 +319,11 @@ void EnemyLayer::removeAllEnemyNow2()
     Ref* obj;
     CCARRAY_FOREACH(m_pAllEnemy2,obj)
     {
-        Enemy* enemy1= (Enemy*)obj;
-        if (enemy1->getLife()>0)
+        Enemy* enemy2= (Enemy*)obj;
+        if (enemy2->getLife()>0)
         {
-             m_pAllEnemy2->removeObject(enemy1);
-            this->removeChild(enemy1,true);
+             m_pAllEnemy2->removeObject(enemy2);
+            this->removeChild(enemy2,true);
         }
     }
 }
@@ -343,11 +332,11 @@ void EnemyLayer::removeAllEnemyNow3()
     Ref* obj;
     CCARRAY_FOREACH(m_pAllEnemy2,obj)
     {
-        Enemy* enemy1= (Enemy*)obj;
-        if (enemy1->getLife()>0)
+        Enemy* enemy3= (Enemy*)obj;
+        if (enemy3->getLife()>0)
         {
-            m_pAllEnemy3->removeObject(enemy1);
-            this->removeChild(enemy1,true);
+            m_pAllEnemy3->removeObject(enemy3);
+            this->removeChild(enemy3,true);
         }
     }
 }
@@ -379,28 +368,17 @@ void EnemyLayer::removeAllEnemy3()
 //µÐ»ú1 µÄ±¬Õ¨¶¯»­Ìí¼Óµ½»º³å³Ø
 void EnemyLayer::createEnemy1BlowupAnimation()
 {
-	//SpriteFrame* m_fream1 =SpriteFrameCache::getInstance()->getSpriteFrameByName("b1.png");
+	SpriteFrame* m_fream1 =SpriteFrameCache::getInstance()->getSpriteFrameByName("b1.png");
 	SpriteFrame* m_fream2 =SpriteFrameCache::getInstance()->getSpriteFrameByName("b2.png");
 	SpriteFrame* m_fream3 =SpriteFrameCache::getInstance()->getSpriteFrameByName("b3.png");
 	SpriteFrame* m_fream4 =SpriteFrameCache::getInstance()->getSpriteFrameByName("b4.png");
-	SpriteFrame* m_fream5 =SpriteFrameCache::getInstance()->getSpriteFrameByName("b5.png");
-    
-    auto m_fream1 =SpriteFrameCache::getInstance()->getSpriteFrameByName("b1.png");
-    
+	SpriteFrame* m_fream5 =SpriteFrameCache::getInstance()->getSpriteFrameByName("b5.png");  
     Vector<SpriteFrame *> animFreams ;
     animFreams.pushBack(m_fream1);
     animFreams.pushBack(m_fream2);
     animFreams.pushBack(m_fream3);
     animFreams.pushBack(m_fream4);
-    animFreams.pushBack(m_fream5);
-    
-//	__Array* animFreams = __Array::create();
-//	animFreams->addObject(m_fream1);
-//	animFreams->addObject(m_fream2);
-//	animFreams->addObject(m_fream3);
-//	animFreams->addObject(m_fream4);
-//	animFreams->addObject(m_fream5);
-    
+    animFreams.pushBack(m_fream5);   
 	Animation* animation = Animation::createWithSpriteFrames(animFreams,0.1f);
 	AnimationCache::getInstance()->addAnimation(animation,"Enemy1Blowup");
 }
@@ -412,13 +390,8 @@ void EnemyLayer::createEnemy2BlowupAnimation()
 	SpriteFrame* m_fream3 =SpriteFrameCache::getInstance()->getSpriteFrameByName("d2b3.png");
 	SpriteFrame* m_fream4 =SpriteFrameCache::getInstance()->getSpriteFrameByName("d2b4.png");
 	SpriteFrame* m_fream5 =SpriteFrameCache::getInstance()->getSpriteFrameByName("d2b5.png");
-//	__Array* animFreams = __Array::create();
-//	animFreams->addObject(m_fream1);
-//	animFreams->addObject(m_fream2);
-//	animFreams->addObject(m_fream3);
-//	animFreams->addObject(m_fream4);
-//	animFreams->addObject(m_fream5);
-    Vector<SpriteFrame *> animFreams ;
+
+    Vector<SpriteFrame*> animFreams ;
     animFreams.pushBack(m_fream1);
     animFreams.pushBack(m_fream2);
     animFreams.pushBack(m_fream3);
@@ -436,13 +409,7 @@ void EnemyLayer::createEnemy3BlowupAnimation()
 	SpriteFrame* m_fream3 =SpriteFrameCache::getInstance()->getSpriteFrameByName("d3b3.png");
 	SpriteFrame* m_fream4 =SpriteFrameCache::getInstance()->getSpriteFrameByName("d3b4.png");
 	SpriteFrame* m_fream5 =SpriteFrameCache::getInstance()->getSpriteFrameByName("d3b5.png");
-//	__Array* animFreams = __Array::create();
-//	animFreams->addObject(m_fream1);
-//	animFreams->addObject(m_fream2);
-//	animFreams->addObject(m_fream3);
-//	animFreams->addObject(m_fream4);
-//	animFreams->addObject(m_fream5);
-    Vector<SpriteFrame *> animFreams ;
+    Vector<SpriteFrame *> animFreams;
     animFreams.pushBack(m_fream1);
     animFreams.pushBack(m_fream2);
     animFreams.pushBack(m_fream3);
